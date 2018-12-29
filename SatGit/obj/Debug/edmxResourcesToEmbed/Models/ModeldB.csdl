@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SatGitDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Favoriler">
+    <Key>
+      <PropertyRef Name="FavoriID" />
+    </Key>
+    <Property Name="FavoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunID" Type="Int32" />
+    <Property Name="KullaniciID" Type="Int32" />
+    <NavigationProperty Name="Urunler" Relationship="Self.FK_Favoriler_Urunler" FromRole="Favoriler" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Kategoriler">
+    <Key>
+      <PropertyRef Name="KategoriID" />
+    </Key>
+    <Property Name="KategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Urunlers" Relationship="Self.FK_Urunler_Kategoriler" FromRole="Kategoriler" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Kullanicilar">
+    <Key>
+      <PropertyRef Name="KullaniciID" />
+    </Key>
+    <Property Name="KullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciSifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Urunlers" Relationship="Self.FK_Urunler_Kullanicilar" FromRole="Kullanicilar" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Mesajlar">
+    <Key>
+      <PropertyRef Name="MesajID" />
+    </Key>
+    <Property Name="MesajID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GondericiID" Type="Int32" />
+    <Property Name="AliciID" Type="Int32" />
+    <Property Name="MesajTarihi" Type="DateTime" Precision="0" />
+    <Property Name="UrunID" Type="Int32" />
+    <Property Name="MesajIcerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Urunler" Relationship="Self.FK_Mesajlar_Urunler" FromRole="Mesajlar" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Resimler">
+    <Key>
+      <PropertyRef Name="FotografID" />
+    </Key>
+    <Property Name="FotografID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunID" Type="Int32" />
+    <NavigationProperty Name="Urunler" Relationship="Self.FK_Resimler_Urunler" FromRole="Resimler" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Urunler">
+    <Key>
+      <PropertyRef Name="UrunID" />
+    </Key>
+    <Property Name="UrunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciID" Type="Int32" />
+    <Property Name="UrunSatildiMi" Type="Boolean" />
+    <Property Name="UrunAciklamasi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UrunFiyati" Type="Double" />
+    <Property Name="KategoriID" Type="Int32" />
+    <Property Name="UrunLokasyonu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UrunEklemeTarihi" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Favorilers" Relationship="Self.FK_Favoriler_Urunler" FromRole="Urunler" ToRole="Favoriler" />
+    <NavigationProperty Name="Kategoriler" Relationship="Self.FK_Urunler_Kategoriler" FromRole="Urunler" ToRole="Kategoriler" />
+    <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Urunler_Kullanicilar" FromRole="Urunler" ToRole="Kullanicilar" />
+    <NavigationProperty Name="Mesajlars" Relationship="Self.FK_Mesajlar_Urunler" FromRole="Urunler" ToRole="Mesajlar" />
+    <NavigationProperty Name="Resimlers" Relationship="Self.FK_Resimler_Urunler" FromRole="Urunler" ToRole="Resimler" />
+  </EntityType>
+  <Association Name="FK_Favoriler_Urunler">
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Favoriler" Type="Self.Favoriler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="UrunID" />
+      </Principal>
+      <Dependent Role="Favoriler">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urunler_Kategoriler">
+    <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="0..1" />
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategoriler">
+        <PropertyRef Name="KategoriID" />
+      </Principal>
+      <Dependent Role="Urunler">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urunler_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="KullaniciID" />
+      </Principal>
+      <Dependent Role="Urunler">
+        <PropertyRef Name="KullaniciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mesajlar_Urunler">
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Mesajlar" Type="Self.Mesajlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="UrunID" />
+      </Principal>
+      <Dependent Role="Mesajlar">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resimler_Urunler">
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Resimler" Type="Self.Resimler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="UrunID" />
+      </Principal>
+      <Dependent Role="Resimler">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SatGitDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Favorilers" EntityType="Self.Favoriler" />
+    <EntitySet Name="Kategorilers" EntityType="Self.Kategoriler" />
+    <EntitySet Name="Kullanicilars" EntityType="Self.Kullanicilar" />
+    <EntitySet Name="Mesajlars" EntityType="Self.Mesajlar" />
+    <EntitySet Name="Resimlers" EntityType="Self.Resimler" />
+    <EntitySet Name="Urunlers" EntityType="Self.Urunler" />
+    <AssociationSet Name="FK_Favoriler_Urunler" Association="Self.FK_Favoriler_Urunler">
+      <End Role="Urunler" EntitySet="Urunlers" />
+      <End Role="Favoriler" EntitySet="Favorilers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urunler_Kategoriler" Association="Self.FK_Urunler_Kategoriler">
+      <End Role="Kategoriler" EntitySet="Kategorilers" />
+      <End Role="Urunler" EntitySet="Urunlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urunler_Kullanicilar" Association="Self.FK_Urunler_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilars" />
+      <End Role="Urunler" EntitySet="Urunlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mesajlar_Urunler" Association="Self.FK_Mesajlar_Urunler">
+      <End Role="Urunler" EntitySet="Urunlers" />
+      <End Role="Mesajlar" EntitySet="Mesajlars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resimler_Urunler" Association="Self.FK_Resimler_Urunler">
+      <End Role="Urunler" EntitySet="Urunlers" />
+      <End Role="Resimler" EntitySet="Resimlers" />
+    </AssociationSet>
+    <FunctionImport Name="KategoriliUrunAra" ReturnType="Collection(SatGitDBModel.KategoriliUrunAra_Result)">
+      <Parameter Name="UrunAdi" Mode="In" Type="String" />
+      <Parameter Name="KategoriAdi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UrunAra" ReturnType="Collection(SatGitDBModel.UrunAra_Result)">
+      <Parameter Name="urunAdi" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="KategoriliUrunAra_Result">
+    <Property Type="Int32" Name="UrunID" Nullable="false" />
+    <Property Type="String" Name="UrunAdi" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="KullaniciID" Nullable="true" />
+    <Property Type="Boolean" Name="UrunSatildiMi" Nullable="true" />
+    <Property Type="String" Name="UrunAciklamasi" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="UrunFiyati" Nullable="true" />
+    <Property Type="Int32" Name="KategoriID" Nullable="true" />
+    <Property Type="String" Name="UrunLokasyonu" Nullable="true" />
+    <Property Type="DateTime" Name="UrunEklemeTarihi" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="UrunAra_Result">
+    <Property Type="Int32" Name="UrunID" Nullable="false" />
+    <Property Type="String" Name="UrunAdi" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="KullaniciID" Nullable="true" />
+    <Property Type="Boolean" Name="UrunSatildiMi" Nullable="true" />
+    <Property Type="String" Name="UrunAciklamasi" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="UrunFiyati" Nullable="true" />
+    <Property Type="Int32" Name="KategoriID" Nullable="true" />
+    <Property Type="String" Name="UrunLokasyonu" Nullable="true" />
+    <Property Type="DateTime" Name="UrunEklemeTarihi" Nullable="true" />
+    <Property Type="Int32" Name="KategoriID1" Nullable="false" />
+    <Property Type="String" Name="KategoriAdi" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

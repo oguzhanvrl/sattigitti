@@ -1,0 +1,72 @@
+﻿@model IEnumerable<SatGit.Models.Urunler>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_anaLayoutPage.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+<div class="row isotope-grid">
+    @foreach (var item in Model)
+    {
+       
+        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+            <!-- Block2 -->
+            <div class="block2">
+                <div class="block2-pic hov-img0">
+
+                    @if (item.UrunSatildiMi == false)
+                    {
+                        <img src="http://www.iconarchive.com/download/i99342/dtafalonso/android-lollipop/Camera-Moto.ico" alt="IMG-PRODUCT">
+                        <a href="~/Urunlers/Details/@item.UrunID" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15">
+                            detaylı bak
+
+                        </a>
+                        
+                        }
+                    else
+                    {
+                        <img src="https://pngimage.net/wp-content/uploads/2018/06/sat%C4%B1ld%C4%B1-png-.png" alt="IMG-PRODUCT">
+                        <a href="" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15">
+                            XXXXX SATILDI XXXXX
+                        </a>
+                    }
+
+                </div>
+
+                <div class="block2-txt flex-w flex-t p-t-14">
+                    <div class="block2-txt-child1 flex-col-l ">
+                        <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+
+                            @Html.DisplayFor(modelItem => item.UrunAdi)
+                            <br />
+                            @Html.DisplayFor(modelItem => item.UrunSatildiMi)
+                        </a>
+
+                        <span class="stext-105 cl3">
+                            ₺    @Html.DisplayFor(modelItem => item.UrunFiyati)
+                        </span>
+                        <br />
+                        @Html.DisplayFor(modelItem => item.UrunLokasyonu)
+                    </div>
+
+                    <div class="block2-txt-child2 flex-r p-t-3">
+                        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                            <img class="icon-heart1 dis-block trans-04" src="~/upload/imagres/icons/icon-heart-01.png" alt="ICON">
+                            <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+
+        }
+</div>

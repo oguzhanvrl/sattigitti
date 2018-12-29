@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SatGitDBModelStoreContainer" CdmEntityContainer="SatGitDBEntities">
+    <EntitySetMapping Name="Favorilers">
+      <EntityTypeMapping TypeName="SatGitDBModel.Favoriler">
+        <MappingFragment StoreEntitySet="Favoriler">
+          <ScalarProperty Name="FavoriID" ColumnName="FavoriID" />
+          <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategorilers">
+      <EntityTypeMapping TypeName="SatGitDBModel.Kategoriler">
+        <MappingFragment StoreEntitySet="Kategoriler">
+          <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+          <ScalarProperty Name="KategoriAdi" ColumnName="KategoriAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kullanicilars">
+      <EntityTypeMapping TypeName="SatGitDBModel.Kullanicilar">
+        <MappingFragment StoreEntitySet="Kullanicilar">
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="KullaniciSifre" ColumnName="KullaniciSifre" />
+          <ScalarProperty Name="KullaniciMail" ColumnName="KullaniciMail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mesajlars">
+      <EntityTypeMapping TypeName="SatGitDBModel.Mesajlar">
+        <MappingFragment StoreEntitySet="Mesajlar">
+          <ScalarProperty Name="MesajID" ColumnName="MesajID" />
+          <ScalarProperty Name="GondericiID" ColumnName="GondericiID" />
+          <ScalarProperty Name="AliciID" ColumnName="AliciID" />
+          <ScalarProperty Name="MesajTarihi" ColumnName="MesajTarihi" />
+          <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+          <ScalarProperty Name="MesajIcerik" ColumnName="MesajIcerik" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Resimlers">
+      <EntityTypeMapping TypeName="SatGitDBModel.Resimler">
+        <MappingFragment StoreEntitySet="Resimler">
+          <ScalarProperty Name="FotografID" ColumnName="FotografID" />
+          <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Urunlers">
+      <EntityTypeMapping TypeName="SatGitDBModel.Urunler">
+        <MappingFragment StoreEntitySet="Urunler">
+          <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+          <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+          <ScalarProperty Name="UrunSatildiMi" ColumnName="UrunSatildiMi" />
+          <ScalarProperty Name="UrunAciklamasi" ColumnName="UrunAciklamasi" />
+          <ScalarProperty Name="UrunFiyati" ColumnName="UrunFiyati" />
+          <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+          <ScalarProperty Name="UrunLokasyonu" ColumnName="UrunLokasyonu" />
+          <ScalarProperty Name="UrunEklemeTarihi" ColumnName="UrunEklemeTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="KategoriliUrunAra" FunctionName="SatGitDBModel.Store.KategoriliUrunAra">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SatGitDBModel.KategoriliUrunAra_Result">
+          <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+          <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+          <ScalarProperty Name="UrunSatildiMi" ColumnName="UrunSatildiMi" />
+          <ScalarProperty Name="UrunAciklamasi" ColumnName="UrunAciklamasi" />
+          <ScalarProperty Name="UrunFiyati" ColumnName="UrunFiyati" />
+          <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+          <ScalarProperty Name="UrunLokasyonu" ColumnName="UrunLokasyonu" />
+          <ScalarProperty Name="UrunEklemeTarihi" ColumnName="UrunEklemeTarihi" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UrunAra" FunctionName="SatGitDBModel.Store.UrunAra">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SatGitDBModel.UrunAra_Result">
+          <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+          <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+          <ScalarProperty Name="UrunSatildiMi" ColumnName="UrunSatildiMi" />
+          <ScalarProperty Name="UrunAciklamasi" ColumnName="UrunAciklamasi" />
+          <ScalarProperty Name="UrunFiyati" ColumnName="UrunFiyati" />
+          <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+          <ScalarProperty Name="UrunLokasyonu" ColumnName="UrunLokasyonu" />
+          <ScalarProperty Name="UrunEklemeTarihi" ColumnName="UrunEklemeTarihi" />
+          <ScalarProperty Name="KategoriID1" ColumnName="KategoriID1" />
+          <ScalarProperty Name="KategoriAdi" ColumnName="KategoriAdi" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
